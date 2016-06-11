@@ -23,11 +23,6 @@ GPIO.setup(4, GPIO.IN, GPIO.PUD_DOWN)
 previous_state = False
 current_state = False
 
-
-
-AWS_ACCESS ='AKIAJVAP3ASQHYTSOA7A'
-AWS_SECRET ='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'
-
 conn = S3Connection(AWS_ACCESS,AWS_SECRET)
 bucket = conn.get_bucket('imagesfrompi')
 directory = '/home/pi/'
@@ -54,10 +49,6 @@ def upload_S3(dir, file):
 
 def removeLocal(dir, file):
 	os.remove(dir + file)
-
-
-API_KEY = '332bee223735a8f34a37e2b428260c48'
-API_SECRET = 'lgZP0QBuv0g4MXUuThPWMMWbvf6WdOC1'
 
 # Import system libraries and define helper functions
 # 导入系统库并定义辅助函数

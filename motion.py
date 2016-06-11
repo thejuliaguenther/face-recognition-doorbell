@@ -18,6 +18,7 @@ from facepp import API
 from subprocess import call
 
 api = API(API_KEY, API_SECRET)
+print API
 
 GPIO.setwarnings(False)
 
