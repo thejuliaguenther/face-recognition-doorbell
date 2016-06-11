@@ -23,7 +23,7 @@ GPIO.setup(4, GPIO.IN, GPIO.PUD_DOWN)
 previous_state = False
 current_state = False
 
-conn = S3Connection(AWS_ACCESS,AWS_SECRET)
+conn = S3Connection("AWS_ACCESS","AWS_SECRET")
 bucket = conn.get_bucket('imagesfrompi')
 directory = '/home/pi/'
 
@@ -70,7 +70,7 @@ def print_result(hint, result):
 # 首先，导入SDK中的API类
 from facepp import API
 
-api = API(API_KEY, API_SECRET)
+api = API("API_KEY", "API_SECRET")
 
 
 

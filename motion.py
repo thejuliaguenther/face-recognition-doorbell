@@ -17,8 +17,7 @@ from pprint import pformat
 from facepp import API
 from subprocess import call
 
-api = API(API_KEY, API_SECRET)
-print API
+api = API("API_KEY", "API_SECRET")
 
 GPIO.setwarnings(False)
 
@@ -29,7 +28,7 @@ GPIO.setup(4, GPIO.IN, GPIO.PUD_DOWN)
 previous_state = False
 current_state = False
 
-conn = S3Connection(AWS_ACCESS,AWS_SECRET)
+conn = S3Connection("AWS_ACCESS","AWS_SECRET")
 bucket = conn.get_bucket('imagesfrompi')
 directory = '/home/pi/'
 
