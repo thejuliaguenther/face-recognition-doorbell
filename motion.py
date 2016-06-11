@@ -53,12 +53,12 @@ def setPinLow():
 def upload_S3(dir, file):
 	k = Key(bucket)
 	k.key = f
-        setPinHigh()
+    setPinHigh()    
 	k.set_contents_from_filename(dir + f, cb=percent_cb, num_cb=10)
 	setPinLow()
 
 def removeLocal(dir, file):
-	os.remove(dir + file)
+    os.remove(dir + file)
 
 
 def print_result(hint, result):
@@ -80,19 +80,19 @@ while True:
 	print('go')
 	filenames = getFiles(directory)
 	print filenames
-	for f in filenames:
-        	print 'rnUploading %s to Amazon S3 bucket %s' % (f, bucket)
-		upload_S3(directory, f)
-        	removeLocal(directory, f)
-	time.sleep(2)
-	result = api.recognition.recognize(url = TARGET_IMAGE, group_name = 'test')
-	print_result('Recognize result:', result)
+    for f in filenames:
+        print 'rnUploading %s to Amazon S3 bucket %s' % (f, bucket)
+    	upload_S3(directory, f)
+        removeLocal(directory, f)
+    time.sleep(2)
+    result = api.recognition.recognize(url = TARGET_IMAGE, group_name = 'test')
+    print_result('Recognize result:', result)
         
-        if result['face']:
-		print '=' * 60
-        result_name = result['face'][0]['candidate'][0]['person_name']
-        print 'The person with highest confidence: ' +result_name]
-		print("done")
-		time.sleep(40)
+    if result['face']:
+    print '=' * 60
+    result_name = result['face'][0]['candidate'][0]['person_name']
+    print 'The person with highest confidence: ' +result_name]
+    print("done")
+    time.sleep(40)
         
 	
