@@ -32,6 +32,11 @@ conn = S3Connection(AWS_ACCESS,AWS_SECRET)
 bucket = conn.get_bucket('imagesfrompi')
 directory = '/home/pi/'
 
+TARGET_IMAGE = 'https://imagesfrompi.s3.amazonaws.com/image2.jpg'
+
+host = '162.243.246.25'
+port = 3000
+
 def percent_cb(complete, total):
     sys.stdout.write('.')
     sys.stdout.flush()
@@ -68,11 +73,6 @@ def print_result(hint, result):
     print hint
     result = encode(result)
     print '\n'.join(['  ' + i for i in pformat(result, width = 75).split('\n')])
-
-TARGET_IMAGE = 'https://imagesfrompi.s3.amazonaws.com/image2.jpg'
-
-host = '162.243.246.25'
-port = 3000
 
 while True:
     call(["fswebcam","image2.jpg"])
