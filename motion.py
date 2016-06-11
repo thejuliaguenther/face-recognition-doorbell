@@ -13,6 +13,11 @@ from socket import socket
 import sys, os, glob, time
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
+from pprint import pformat
+from facepp import API
+from subprocess import call
+
+api = API(API_KEY, API_SECRET)
 
 GPIO.setwarnings(False)
 
@@ -50,9 +55,7 @@ def upload_S3(dir, file):
 def removeLocal(dir, file):
 	os.remove(dir + file)
 
-# Import system libraries and define helper functions
-# 导入系统库并定义辅助函数
-from pprint import pformat
+
 def print_result(hint, result):
     def encode(obj):
         if type(obj) is unicode:
@@ -66,25 +69,14 @@ def print_result(hint, result):
     result = encode(result)
     print '\n'.join(['  ' + i for i in pformat(result, width = 75).split('\n')])
 
-# First import the API class from the SDK
-# 首先，导入SDK中的API类
-from facepp import API
-
-api = API(API_KEY, API_SECRET)
-
-
-
 TARGET_IMAGE = 'https://imagesfrompi.s3.amazonaws.com/image2.jpg'
 
 host = '162.243.246.25'
 port = 3000
 
 while True:
-    
-        
-	from subprocess import call
-        call(["fswebcam","image2.jpg"])
-        time.sleep(1)
+    call(["fswebcam","image2.jpg"])
+    time.sleep(1)
 	print('go')
 	filenames = getFiles(directory)
 	print filenames
@@ -98,8 +90,10 @@ while True:
         
         if result['face']:
 		print '=' * 60
-		print 'The person with highest confidence:', \
-        	result['face'][0]['candidate'][0]['person_name']
+        result_name = result['face'][0]['candidate'][0]['person_name']
+		# print 'The person with highest confidence:', \
+  #       	result['face'][0]['candidate'][0]['person_name']
+        print 'The person with highest confidence: ' +result_name]
 		print("done")
 		time.sleep(40)
         
