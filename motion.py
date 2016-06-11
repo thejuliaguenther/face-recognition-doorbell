@@ -91,8 +91,6 @@ while True:
         if result['face']:
 		print '=' * 60
         result_name = result['face'][0]['candidate'][0]['person_name']
-		# print 'The person with highest confidence:', \
-  #       	result['face'][0]['candidate'][0]['person_name']
         print 'The person with highest confidence: ' +result_name]
 		print("done")
 		time.sleep(40)
